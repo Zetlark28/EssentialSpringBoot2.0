@@ -1,24 +1,37 @@
 package it.ezpeleta.lil.roomwebapp.models;
 
+import javax.persistence.*;
+
 //model : entity or dto to pass to FE
+@Entity
+@Table(name = "EMPLOYEE")
 public class Staff {
 
-    private long id;
+    @Id
+    @Column(name = "EMPLOYEE_ID")
+    private String id;
+
+    @Column(name = "FIRST_NAME")
     private String firstName;
+
+    @Column(name = "LAST_NAME")
     private String lastName;
+
+    @Column(name = "POSITION")
+    @Enumerated(EnumType.STRING)
     private StaffPosition position;
 
     public Staff() {
     }
 
-    public Staff(long id, String firstName, String lastName, StaffPosition position) {
+    public Staff(String id, String firstName, String lastName, StaffPosition position) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -34,7 +47,7 @@ public class Staff {
         this.position = position;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
