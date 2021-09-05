@@ -1,5 +1,6 @@
 package it.ezpeleta.lil.roomwebapp.service;
 
+import it.ezpeleta.lil.roomwebapp.data.RoomRepository;
 import it.ezpeleta.lil.roomwebapp.models.Room;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +10,13 @@ import java.util.List;
 @Service
 public class RoomService {
 
+    private final RoomRepository roomRepository;
+
+    public RoomService(RoomRepository roomRepository) {
+        this.roomRepository = roomRepository;
+    }
+
     public List<Room> getAllRooms(){
-        List<Room> rooms = new ArrayList<>();
-        for(int i=0 ; i<10;i++){
-            rooms.add(new Room(i, "Room " + i, "R"+i, "Q"));
-        }
-        return rooms;
+        return roomRepository.findAll();
     }
 }
